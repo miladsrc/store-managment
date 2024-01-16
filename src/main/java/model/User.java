@@ -2,10 +2,10 @@ package model;
 
 public class User {
 
-    int id;
-    String name;
-    String phoneNumber;
-    int nationalCode;
+    private int id;
+    private String name;
+    private String phoneNumber;
+    private int nationalCode;
 
 
     //constructor

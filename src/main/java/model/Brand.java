@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Brand {
 
-    int id;
-    String name;
-    String website;
-    String description;
-    Shareholder[] shareholders;
+    private int id;
+    private String name;
+    private String website;
+    private String description;
+    private Shareholder[] shareholders;
 
     //constructor
 
