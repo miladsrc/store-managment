@@ -4,8 +4,9 @@ public class User {
 
     private int id;
     private String name;
-    private String phoneNumber;
-    private int nationalCode;
+    private String username;
+    private String email;
+    private String password;
 
 
     //constructor
@@ -13,21 +14,23 @@ public class User {
     public User(){
     }
 
-    public User(int id, String name, String phoneNumber, int nationalCode) {
+    public User(int id, String name, String username, String email, String password) {
         this.id = id;
         this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.nationalCode = nationalCode;
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public User(String name, String phoneNumber, int nationalCode) {
+    public User(String name, String username, String email, String password) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.nationalCode = nationalCode;
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
+
 
     //get and set
-
 
     public int getId() {
         return id;
@@ -45,33 +48,41 @@ public class User {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public int getNationalCode() {
-        return nationalCode;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNationalCode(int nationalCode) {
-        this.nationalCode = nationalCode;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
     //method
-
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", nationalCode=" + nationalCode +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
