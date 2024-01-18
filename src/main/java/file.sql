@@ -53,3 +53,7 @@ create table if not exists shareholder_brand
     foreign key (brand_id_fk) references brand (id)
     )
 
+--query
+
+1-
+    INSERT  INTO  users( name, username, email, password) values (?,?,?,?);
