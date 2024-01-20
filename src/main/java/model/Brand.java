@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Arrays;
 
 public class Brand {
 
@@ -8,26 +7,23 @@ public class Brand {
     private String name;
     private String website;
     private String description;
-    private Shareholder[] shareholders;
 
     //constructor
 
     public Brand() {
     }
 
-    public Brand(int id, String name, String website, String description, Shareholder[] shareholders) {
+    public Brand(int id, String name, String website, String description) {
         this.id = id;
         this.name = name;
         this.website = website;
         this.description = description;
-        this.shareholders = shareholders;
     }
 
-    public Brand(String name, String website, String description, Shareholder[] shareholders) {
+    public Brand(String name, String website, String description) {
         this.name = name;
         this.website = website;
         this.description = description;
-        this.shareholders = shareholders;
     }
 
 
@@ -66,13 +62,7 @@ public class Brand {
         this.description = description;
     }
 
-    public Shareholder[] getShareholders() {
-        return shareholders;
-    }
 
-    public void setShareholders(Shareholder[] shareholders) {
-        this.shareholders = shareholders;
-    }
 
     //method
 
@@ -84,7 +74,6 @@ public class Brand {
                 ", name='" + name + '\'' +
                 ", website='" + website + '\'' +
                 ", description='" + description + '\'' +
-                ", shareholders=" + Arrays.toString(shareholders) +
                 '}';
     }
 }
