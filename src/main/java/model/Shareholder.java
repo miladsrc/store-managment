@@ -8,31 +8,29 @@ public class Shareholder {
     private String name;
     private String phoneNumber;
     private int nationalCode;
-    private Brand[] brands;
+
 
     //constructor
-
 
     public Shareholder() {
     }
 
-    public Shareholder(int id, String name, String phoneNumber, int nationalCode, Brand[] brands) {
+
+    public Shareholder(int id, String name, String phoneNumber, int nationalCode) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.nationalCode = nationalCode;
-        this.brands = brands;
     }
 
-    public Shareholder(String name, String phoneNumber, int nationalCode, Brand[] brands) {
+    public Shareholder(String name, String phoneNumber, int nationalCode) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.nationalCode = nationalCode;
-        this.brands = brands;
     }
 
-    //get and set
 
+    //get and set
 
     public int getId() {
         return id;
@@ -66,16 +64,8 @@ public class Shareholder {
         this.nationalCode = nationalCode;
     }
 
-    public Brand[] getBrands() {
-        return brands;
-    }
-
-    public void setBrands(Brand[] brands) {
-        this.brands = brands;
-    }
 
     //method
-
 
     @Override
     public String toString() {
@@ -84,7 +74,6 @@ public class Shareholder {
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", nationalCode=" + nationalCode +
-                ", brands=" + Arrays.toString(brands) +
                 '}';
     }
 }

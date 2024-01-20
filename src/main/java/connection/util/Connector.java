@@ -10,7 +10,7 @@ public class Connector {
 
     static {
         try {
-            connection = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5432/HW8","postgres","9010231394");
+            connection = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5432/hw8","postgres","9010231394");
         } catch (SQLException e) {
             System.out.println("connection is not established !");
             throw new RuntimeException(e);
