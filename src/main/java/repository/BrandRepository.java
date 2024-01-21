@@ -80,7 +80,7 @@ public class BrandRepository {
             String name = resultSet.getString(2);
             String website = resultSet.getString(3);
             String description = resultSet.getString(4);
-            System.out.printf("\n%s ->\nname : %s\nwebsite : %s\ndescription : %s\n",
+            System.out.printf("\n%s ->name : %s   website : %s   description : %s",
                     id, name, website, description);
         }
 
