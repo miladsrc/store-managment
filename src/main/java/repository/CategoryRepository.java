@@ -16,7 +16,6 @@ public class CategoryRepository {
         this.connection = connection;
     }
 
-
     public boolean createCategory(Category category) throws SQLException {
 
         String sql = "insert into category(name,description)values (?,? )";

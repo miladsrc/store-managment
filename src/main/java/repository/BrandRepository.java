@@ -86,20 +86,6 @@ public class BrandRepository {
 
     }
 
-    public static void main(String[] args) throws SQLException {
-        Connection connection1 = Connector.getConnection();
-        BrandRepository brandRepository = new BrandRepository(connection1);
-
-        Brand brand;
-        brand = new Brand("milad", "www.coma.com", "its good though i liker to see changer");
-        brandRepository.createBrand(brand);
-        brandRepository.dropBrand(1);
-        System.out.println(brandRepository.readBrand(2).toString());
-        Brand brand1 = new Brand(2, "javad", "www.coma.com", "its good though i liker to see changer");
-        brandRepository.branderList();
-        brandRepository.updateBrand(brand1);
-
-    }
 }
 
 
