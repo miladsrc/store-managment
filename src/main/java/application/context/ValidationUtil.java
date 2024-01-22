@@ -29,13 +29,13 @@ public class ValidationUtil {
     }
 
     public static boolean phoneNumberValidator(String phoneNumber) {
-        String regex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
+        String regex = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
 
-    public static boolean NationalCodeValidator(String nationalCode) {
+    public static boolean nationalCodeValidator(String nationalCode) {
         if (nationalCode.length() != 10) {
             return false;
         } else {
