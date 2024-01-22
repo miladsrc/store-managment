@@ -69,8 +69,8 @@ public class ProductRepository {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
 
-        int resutl = preparedStatement.executeUpdate();
-        return (resutl == 1) ? true : false;
+        int result = preparedStatement.executeUpdate();
+        return (result == 1) ? true : false;
     }
 
     public void productList() throws SQLException {
@@ -103,5 +103,38 @@ public class ProductRepository {
         productRepository.dropProduct(2);
         System.out.println(productRepository.readProduct(3));
         productRepository.productList();
+    }
+
+
+    public void categoryList() throws SQLException {
+        String sql = "select * from category order by id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            String description = resultSet.getString(3);
+            System.out.printf("\n%s ->name : %s    description : %s",
+                    id, name, description);
+        }
+
+    }
+
+
+    public void branderList() throws SQLException {
+        String sql = "select * from brand order by id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            String website = resultSet.getString(3);
+            String description = resultSet.getString(4);
+            System.out.printf("\n%s ->name : %s   website : %s   description : %s",
+                    id, name, website, description);
+        }
+
     }
 }
