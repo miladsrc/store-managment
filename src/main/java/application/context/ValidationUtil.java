@@ -14,10 +14,7 @@ public class ValidationUtil {
     }
 
     public static boolean websiteValidation(String website) {
-        String regex = "(https:\\/\\/www\\.|http:\\/\\/www\\.|https:\\/\\/|http:\\/\\/)" +
-                "?[a-zA-Z0-9]{2,}" +
-                "(\\.[a-zA-Z0-9]{2,})" +
-                "(\\.[a-zA-Z0-9]{2,})?\n";
+        String regex = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(website);
         return matcher.matches();
