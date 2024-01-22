@@ -57,14 +57,14 @@ public class CategoryRepository {
         return (result == 1) ? true : false;
     }
 
-    public boolean dropBrand(int id) throws SQLException {
+    public boolean dropCategory(int id) throws SQLException {
         String sql = "delete from category\n" +
                 "where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
 
-        int resutl = preparedStatement.executeUpdate();
-        return (resutl == 1) ? true : false;
+        int result = preparedStatement.executeUpdate();
+        return (result == 1) ? true : false;
     }
 
     public void categoryList() throws SQLException {
@@ -76,7 +76,7 @@ public class CategoryRepository {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String description = resultSet.getString(3);
-            System.out.printf("\n%s ->\nname : %s\ndescription : %s\n",
+            System.out.printf("\n%s ->name : %s    description : %s",
                     id, name, description);
         }
 
