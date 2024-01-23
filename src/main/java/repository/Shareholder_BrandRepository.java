@@ -13,14 +13,15 @@ private final Connection connection;
 
     public boolean createSh_Br(Shareholder_Brand shareholderBrand) throws SQLException {
 
-        String sql = "insert into shareholder_brand(shareholder_id_fk, brand_id_fk) vlaues(?,?)";
+        String sql = "insert into shareholder_brand(shareholder_id_fk, brand_id_fk) values (?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
         preparedStatement.setInt(1, shareholderBrand.getShareholder_id());
         preparedStatement.setInt(2, shareholderBrand.getBrand_id());
 
-        int result = preparedStatement.executeUpdate();
-        return (result == 1) ? true : false;
+        preparedStatement.executeUpdate();
+            return true;
+
     }
 
     public void readShareholdersBrand(int shareholder_id) throws SQLException {
@@ -68,10 +69,9 @@ private final Connection connection;
     }
 
 
-    public boolean updateShare_Brand(Shareholder_Brand setShareholderBrand1 , Shareholder_Brand shareholderBrand2) throws SQLException {
-        String sql = "update shareholder_brand\n" +
-                "set shareholder_id_fk = ? , brand_id_fk = ?\n" +
-                "where shareholder_id_fk = ? and brand_id_fk = ?";
+    public boolean updateSh_Br(Shareholder_Brand setShareholderBrand1 , Shareholder_Brand shareholderBrand2) throws SQLException {
+        String sql = "delete from shareholder_brand where shareholder_id_fk = ? and brand_id_fk = ?;\n" +
+                "insert into shareholder_brand(shareholder_id_fk, brand_id_fk) values (?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, setShareholderBrand1.getShareholder_id());
         preparedStatement.setInt(2, setShareholderBrand1.getBrand_id());
@@ -82,15 +82,48 @@ private final Connection connection;
         return (result == 1) ? true : false;
     }
 
-    public boolean dropProduct(Shareholder_Brand shareholderBrand) throws SQLException {
+    public boolean dropSh_Br(Shareholder_Brand shareholderBrand) throws SQLException {
         String sql = "delete from shareholder_brand \n" +
                 "where shareholder_id_fk = ? and brand_id_fk = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, shareholderBrand.getShareholder_id());
-        preparedStatement.setInt(1, shareholderBrand.getBrand_id());
+        preparedStatement.setInt(2, shareholderBrand.getBrand_id());
 
-        int resutl = preparedStatement.executeUpdate();
+        int resutl =preparedStatement.executeUpdate();
         return (resutl == 1) ? true : false;
+    }
+
+
+    public void branderList() throws SQLException {
+        String sql = "select * from brand order by id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            String website = resultSet.getString(3);
+            String description = resultSet.getString(4);
+            System.out.printf("\n%s ->name : %s   website : %s   description : %s",
+                    id, name, website, description);
+        }
+    }
+
+
+    public void shareholderList() throws SQLException {
+        String sql="select * from shareholder order by id";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()){
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(2);
+            String phoneNumber = resultSet.getString(3);
+            int nationalCode = resultSet.getInt(4);
+            System.out.printf("\n%s ->name : %s   |   phone number : %s   |   national code : %s",
+                    id,name,phoneNumber,nationalCode);
+        }
+
     }
 
 }
