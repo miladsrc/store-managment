@@ -21,7 +21,6 @@ public class UserService {
         User user ;
         String name, email, password, username;
 
-        System.out.println("******** sign up ********");
         //getName
         System.out.println("enter your name :");
         name = scanner.next();
@@ -50,8 +49,6 @@ public class UserService {
     public boolean userLoggingIn() throws SQLException {
         User user ;
         String  password, username;
-
-        System.out.println("******** logging in ********");
 
         //getUsername
             System.out.println("enter your username :");
