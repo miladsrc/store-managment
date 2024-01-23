@@ -19,15 +19,17 @@ public class BrandService {
     }
 
     public void crateBrand() throws SQLException {
-        String name, website, description;
+        String name, website, description,webAddress,domain;
 
         System.out.println("enter brand name :");
         name = scanner.next();
 
         do {
+            domain ="https://";
             System.out.println("enter your website :");
             website = scanner.next();
-        } while (!ValidationUtil.websiteValidation(website));
+            webAddress = domain+website;
+        } while (!ValidationUtil.websiteValidation(webAddress));
 
 
         System.out.println("enter description of brand :");
@@ -35,7 +37,7 @@ public class BrandService {
         description = scanner.nextLine();
 
 
-        Brand brand = new Brand(name, website, description);
+        Brand brand = new Brand(name, webAddress, description);
 
         Boolean result = brandRepository.createBrand(brand);
         while (result) {
@@ -54,7 +56,7 @@ public class BrandService {
     public void updateBrand() throws SQLException {
         /*gets id with new fields of brand to change in db*/
 
-        String name, website, description;
+        String name, website, description,webAddress,domain;
         int id;
 
         brandRepository.branderList();
@@ -66,15 +68,18 @@ public class BrandService {
         name = scanner.next();
 
         do {
-            System.out.println("change brand's  website :");
+            domain ="https://";
+            System.out.println("enter your website :");
             website = scanner.next();
-        } while (!ValidationUtil.websiteValidation(website));
+            webAddress = domain+website;
+        } while (!ValidationUtil.websiteValidation(webAddress));
+
 
         System.out.println("change brand's description :");
         scanner.nextLine();
         description = scanner.nextLine();
 
-        Brand brand = new Brand(id,name, website, description);
+        Brand brand = new Brand(id,name, webAddress, description);
 
         Boolean result = brandRepository.updateBrand(brand);
         while (result) {
