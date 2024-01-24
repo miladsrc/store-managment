@@ -19,87 +19,100 @@ public class BrandService {
     }
 
     public void crateBrand() throws SQLException {
-        String name, website, description,webAddress,domain;
+        try {
+            String name, website, description, webAddress, domain;
 
-        System.out.println("enter brand name :");
-        name = scanner.next();
+            System.out.println("enter brand name :");
+            name = scanner.next();
 
-        do {
-            domain ="https://";
-            System.out.println("enter your website :");
-            website = scanner.next();
-            webAddress = domain+website;
-        } while (!ValidationUtil.websiteValidation(webAddress));
-
-
-        System.out.println("enter description of brand :");
-        scanner.nextLine();
-        description = scanner.nextLine();
+            do {
+                domain = "https://";
+                System.out.println("enter your website :");
+                website = scanner.next();
+                webAddress = domain + website;
+            } while (!ValidationUtil.websiteValidation(webAddress));
 
 
-        Brand brand = new Brand(name, webAddress, description);
+            System.out.println("enter description of brand :");
+            scanner.nextLine();
+            description = scanner.nextLine();
 
-        Boolean result = brandRepository.createBrand(brand);
-        while (result) {
-            System.out.printf("\nbrand %s registered !", name);
-            break;
+
+            Brand brand = new Brand(name, webAddress, description);
+
+            Boolean result = brandRepository.createBrand(brand);
+            while (result) {
+                System.out.printf("\nbrand %s registered !", name);
+                break;
+            }
+        } catch (Exception e) {
+            System.out.println("error !");
         }
     }
 
     public void readBrandById() throws SQLException {
-        System.out.println("\nchoose brand to read information :");
-        int brand_id = scanner.nextInt();
-        System.out.println(brandRepository.readBrand(brand_id).toString());
+        try {
+            System.out.println("\nchoose brand id to read information :");
+            int brand_id = scanner.nextInt();
+            System.out.println(brandRepository.readBrand(brand_id).toString());
+        } catch (Exception exception) {
+            System.out.println("enter valid id");
+        }
     }
 
 
     public void updateBrand() throws SQLException {
         /*gets id with new fields of brand to change in db*/
+        try {
+            String name, website, description, webAddress, domain;
+            int id;
 
-        String name, website, description,webAddress,domain;
-        int id;
+            brandRepository.branderList();
 
-        brandRepository.branderList();
+            System.out.println("\n\nenter id of brand to change fields :");
+            id = scanner.nextInt();
 
-        System.out.println("\n\nenter id of brand to change fields :");
-        id = scanner.nextInt();
+            System.out.println("change brand's  name :");
+            name = scanner.next();
 
-        System.out.println("change brand's  name :");
-        name = scanner.next();
-
-        do {
-            domain ="https://";
-            System.out.println("enter your website :");
-            website = scanner.next();
-            webAddress = domain+website;
-        } while (!ValidationUtil.websiteValidation(webAddress));
+            do {
+                domain = "https://";
+                System.out.println("enter your website :");
+                website = scanner.next();
+                webAddress = domain + website;
+            } while (!ValidationUtil.websiteValidation(webAddress));
 
 
-        System.out.println("change brand's description :");
-        scanner.nextLine();
-        description = scanner.nextLine();
+            System.out.println("change brand's description :");
+            scanner.nextLine();
+            description = scanner.nextLine();
 
-        Brand brand = new Brand(id,name, webAddress, description);
+            Brand brand = new Brand(id, name, webAddress, description);
 
-        Boolean result = brandRepository.updateBrand(brand);
-        while (result) {
-            System.out.printf("\nbrand %s updated !", name);
-            break;
+            Boolean result = brandRepository.updateBrand(brand);
+            while (result) {
+                System.out.printf("\nbrand %s updated !", name);
+                break;
+            }
+        } catch (Exception e) {
+            System.out.println("enter valid id !");
         }
-
     }
 
 
     public void deleteBrand() throws SQLException {
-
-        int id ;
-        brandRepository.branderList();
-        System.out.println("\n\nenter brand id :");
-        id = scanner.nextInt();
-        Boolean b = brandRepository.dropBrand(id);
-        while (b){
-            System.out.printf("%s is removed",id);
-            break;
+        try {
+            int id;
+            brandRepository.branderList();
+            System.out.println("\n\nenter brand id :");
+            id = scanner.nextInt();
+            Boolean b = brandRepository.dropBrand(id);
+            while (b) {
+                System.out.printf("%s is removed", id);
+                break;
+            }
+        } catch (Exception e) {
+            System.out.println("please enter valid id !");
         }
     }
 }

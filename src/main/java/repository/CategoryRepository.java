@@ -58,6 +58,7 @@ public class CategoryRepository {
     }
 
     public boolean dropCategory(int id) throws SQLException {
+        dropCategory(id);
         String sql = "delete from category\n" +
                 "where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -82,6 +83,10 @@ public class CategoryRepository {
 
     }
 
-
-
+    private void foreignKeyDropCategory(int id) throws SQLException {
+        String sql = "delete from product where category_id_fk = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
 }

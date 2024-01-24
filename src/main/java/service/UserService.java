@@ -18,6 +18,7 @@ public class UserService {
 
 
     public boolean userSignUp() throws SQLException {
+
         User user ;
         String name, email, password, username;
 

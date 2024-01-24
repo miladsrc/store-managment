@@ -43,8 +43,8 @@ public class Menu {
 
 
     private void menu() throws SQLException {
-
-        System.out.println("\n\n" +
+        System.out.println("\n*********************************");
+        System.out.println(
                 "1 : Brand\n" +
                 "2 : Category\n" +
                 "3 : Shareholder\n" +
@@ -80,7 +80,8 @@ public class Menu {
     }
 
     private void sh_brMenu() throws SQLException {
-        System.out.println("\n1 : split share\n" +
+        System.out.println("\n*********************************");
+        System.out.println("1 : split share\n" +
                 "2 : read brands share \n" +
                 "3 : read shares brand \n" +
                 "4 : drop share_brand\n" +
@@ -99,7 +100,9 @@ public class Menu {
     }
 
     private void productMenu() throws SQLException {
-        System.out.println("\n1 : create Product\n" +
+        System.out.println("\n*********************************");
+
+        System.out.println("1 : create Product\n" +
                 "2 : read brand \n" +
                 "3 : update Product \n" +
                 "4 : drop Product\n" +
@@ -116,7 +119,9 @@ public class Menu {
     }
 
     private void shareholderMenu() throws SQLException {
-        System.out.println("\n1 : create Shareholder\n" +
+        System.out.println("\n*********************************");
+
+        System.out.println("1 : create Shareholder\n" +
                 "2 : read Shareholder \n" +
                 "3 : update Shareholder \n" +
                 "4 : drop Shareholder\n" +
@@ -133,7 +138,9 @@ public class Menu {
     }
 
     private void categoryMenu() throws SQLException {
-        System.out.println("\n1 : create category\n" +
+        System.out.println("\n*********************************");
+
+        System.out.println("1 : create category\n" +
                 "2 : read category \n" +
                 "3 : update category \n" +
                 "4 : drop category\n" +
@@ -150,7 +157,9 @@ public class Menu {
     }
 
     private void brandMenu() throws SQLException {
-        System.out.println("\n1 : create brand\n" +
+        System.out.println("\n*********************************");
+
+        System.out.println("1 : create brand\n" +
                 "2 : read brand \n" +
                 "3 : update brand \n" +
                 "4 : drop brand\n" +
@@ -165,6 +174,4 @@ public class Menu {
             case 5 ->menu();
         }
     }
-
-
 }

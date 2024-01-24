@@ -60,29 +60,37 @@ public class ShareholderRepository {
     }
 
     public boolean dropShareholder(int id) throws SQLException {
+        foreignKeyDrop(id);
         String sql = "delete from shareholder\n" +
                 "where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,id);
-
+        preparedStatement.setInt(1, id);
         int resutl = preparedStatement.executeUpdate();
-        return (resutl ==1)?true:false;
+        return (resutl == 1) ? true : false;
     }
 
     public void shareholderList() throws SQLException {
-        String sql="select * from shareholder order by id";
+        String sql = "select * from shareholder order by id";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String phoneNumber = resultSet.getString(3);
             int nationalCode = resultSet.getInt(4);
             System.out.printf("\n%s ->name : %s   |   phone number : %s   |   national code : %s",
-                    id,name,phoneNumber,nationalCode);
+                    id, name, phoneNumber, nationalCode);
         }
 
+    }
+
+
+    private void foreignKeyDrop(int id) throws SQLException {
+        String sql = "delete from shareholder_brand where shareholder_id_fk = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
     }
 
 }

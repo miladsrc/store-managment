@@ -30,6 +30,7 @@ public class BrandRepository {
     }
 
     public Brand readBrand(int int_brand) throws SQLException {
+
         String sql = "select * from brand where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         Brand brand = null;
@@ -61,6 +62,8 @@ public class BrandRepository {
     }
 
     public boolean dropBrand(int id) throws SQLException {
+        foreignKeyDropProduct(id);
+        foreignKeyDrop(id);
         String sql = "delete from brand\n" +
                 "where id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -87,6 +90,20 @@ public class BrandRepository {
 
     }
 
+    private void foreignKeyDrop(int id) throws SQLException {
+        String sql = "delete from shareholder_brand where brand_id_fk = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
+
+
+    private void foreignKeyDropProduct(int id) throws SQLException {
+        String sql = "delete from product where brand_id_fk = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
 }
 
 

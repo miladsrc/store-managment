@@ -6,7 +6,8 @@ import model.Shareholder_Brand;
 import java.sql.*;
 
 public class Shareholder_BrandRepository {
-private final Connection connection;
+    private final Connection connection;
+
     public Shareholder_BrandRepository(Connection connection) {
         this.connection = connection;
     }
@@ -20,12 +21,12 @@ private final Connection connection;
         preparedStatement.setInt(2, shareholderBrand.getBrand_id());
 
         preparedStatement.executeUpdate();
-            return true;
+        return true;
 
     }
 
     public void readShareholdersBrand(int shareholder_id) throws SQLException {
-        String sql ="select shareholder_id_fk,shareholder.name,brand_id_fk, b.name\n" +
+        String sql = "select shareholder_id_fk,shareholder.name,brand_id_fk, b.name\n" +
                 "from shareholder\n" +
                 "         inner join shareholder_brand sb on shareholder.id = sb.shareholder_id_fk\n" +
                 "         inner join brand b on b.id = sb.brand_id_fk\n" +
@@ -42,7 +43,7 @@ private final Connection connection;
             String share_name = resultSet.getString(2);
             int brandId = resultSet.getInt(3);
             String brand_name = resultSet.getString(4);
-            System.out.printf("\nid : %s ->shareholder_name : %s  | id :%s -> brand : %s",shareId,share_name,brandId,brand_name);
+            System.out.printf("\nid : %s ->shareholder_name : %s  | id :%s -> brand : %s", shareId, share_name, brandId, brand_name);
         }
     }
 
@@ -64,12 +65,12 @@ private final Connection connection;
             String share_name = resultSet.getString(2);
             int shareId = resultSet.getInt(3);
             String brand_name = resultSet.getString(4);
-            System.out.printf("\nid : %s -> brand : %s  | id : %s ->  shareholder : %s",brandId,brand_name,shareId,share_name);
+            System.out.printf("\nid : %s -> brand : %s  | id : %s ->  shareholder : %s", brandId, brand_name, shareId, share_name);
         }
     }
 
 
-    public boolean updateSh_Br(Shareholder_Brand setShareholderBrand1 , Shareholder_Brand shareholderBrand2) throws SQLException {
+    public boolean updateSh_Br(Shareholder_Brand setShareholderBrand1, Shareholder_Brand shareholderBrand2) throws SQLException {
         String sql = "delete from shareholder_brand where shareholder_id_fk = ? and brand_id_fk = ?;\n" +
                 "insert into shareholder_brand(shareholder_id_fk, brand_id_fk) values (?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -89,7 +90,7 @@ private final Connection connection;
         preparedStatement.setInt(1, shareholderBrand.getShareholder_id());
         preparedStatement.setInt(2, shareholderBrand.getBrand_id());
 
-        int resutl =preparedStatement.executeUpdate();
+        int resutl = preparedStatement.executeUpdate();
         return (resutl == 1) ? true : false;
     }
 
@@ -111,17 +112,17 @@ private final Connection connection;
 
 
     public void shareholderList() throws SQLException {
-        String sql="select * from shareholder order by id";
+        String sql = "select * from shareholder order by id";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             String phoneNumber = resultSet.getString(3);
             int nationalCode = resultSet.getInt(4);
             System.out.printf("\n%s ->name : %s   |   phone number : %s   |   national code : %s",
-                    id,name,phoneNumber,nationalCode);
+                    id, name, phoneNumber, nationalCode);
         }
 
     }
